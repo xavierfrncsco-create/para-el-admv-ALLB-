@@ -5,38 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mimy ❤️</title>
     <style>
-        /* Estilo Elegante */
         body {
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: 'Apple Chancery', cursive, 'Georgia', serif;
-            color: #5d4037;
+            font-family: 'Georgia', serif;
+            color: #4a332d;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Imagen de fondo con efecto elegante */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('foto.jpg'); /* Asegúrate de que el nombre coincida */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4; /* Esto hace que la foto se vea clarita y elegante */
+            z-index: -1;
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85); /* Fondo blanco semi-transparente */
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 80%;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #eee;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 85%;
+            backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         #phrase {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             line-height: 1.6;
             margin-bottom: 30px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: opacity 0.5s ease;
         }
 
@@ -44,17 +57,16 @@
             background-color: #d4a373;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
+            padding: 12px 30px;
+            border-radius: 25px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+            transition: all 0.3s ease;
         }
 
         .btn-next:hover {
             background-color: #bc8a5f;
-            transform: translateY(-2px);
+            transform: scale(1.05);
         }
 
         .heart {
@@ -68,8 +80,8 @@
 
     <div class="container">
         <div class="heart">❤</div>
-        <div id="phrase">Cargando mensaje...</div>
-        <button class="btn-next" onclick="nextPhrase()" id="btn">Siguiente</button>
+        <div id="phrase">Cargando...</div>
+        <button class="btn-next" onclick="nextPhrase()" id="btn">Empezar</button>
     </div>
 
     <script>
@@ -101,10 +113,11 @@
                 phraseElement.innerText = phrases[currentIndex];
                 phraseElement.style.opacity = 1;
                 
-                // Cambiar texto del botón en la última frase
                 if (currentIndex === phrases.length - 1) {
                     btnElement.innerText = "Te amo ❤️";
-                    btnElement.onclick = null; // Desactiva el clic al final
+                    btnElement.style.background = "#e5989b";
+                } else {
+                    btnElement.innerText = "Siguiente";
                 }
             }, 500);
         }
@@ -116,8 +129,8 @@
             }
         }
 
-        // Iniciar con la primera frase
         updatePhrase();
     </script>
 </body>
 </html>
+

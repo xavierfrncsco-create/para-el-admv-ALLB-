@@ -49,11 +49,12 @@
 
         <div class="music-container" id="music">
             <p style="font-size: 0.8rem;">Nuestra canción:</p>
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/10QxXvYpLzYlOqC8fVdE3X?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3YvN6IAt1P9X7699F2HkOn?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 
     <script>
+        // Fecha configurada: 31 de Agosto de 2025
         const startDate = new Date(2025, 7, 31); 
 
         function updateTimer() {
@@ -78,35 +79,4 @@
             "Gracias por regalarme esas sonrisas que me dan mil años de vida.",
             "Gracias por esos abrazos que me llenan de paz y tranquilidad.",
             "Y así me podría extender por mucho tiempo...",
-            "Pero gracias por cruzarte en mi vida y por permitirme entrar en la tuya.",
-            "Nunca olvides que te quiero Mimy.",
-            "Att: Xavier."
-        ];
-
-        let currentIndex = 0;
-        function updatePhrase() {
-            const p = document.getElementById('phrase');
-            const btn = document.getElementById('btn');
-            p.style.opacity = 0;
-            setTimeout(() => {
-                p.innerText = phrases[currentIndex];
-                p.style.opacity = 1;
-                if (currentIndex === phrases.length - 1) {
-                    btn.style.display = 'none';
-                    document.getElementById('music').style.display = 'block';
-                } else {
-                    btn.innerText = "Siguiente";
-                }
-            }, 500);
-        }
-
-        function nextPhrase() {
-            if (currentIndex < phrases.length - 1) {
-                currentIndex++;
-                updatePhrase();
-            }
-        }
-        updatePhrase();
-    </script>
-</body>
-</html>
+            "Pero gracias por cruzarte en mi vida y por permitirme

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi novia ❤️</title>
+    <style>
+        body { background-color: #fdf5e6; text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
+        #garden { height: 300px; margin-top: 50px; position: relative; }
+        .flower { font-size: 50px; display: none; transition: transform 0.5s; }
+        #seed { font-size: 40px; cursor: pointer; display: inline-block; }
+        #message { display: none; margin-top: 20px; padding: 20px; color: #5d4037; font-weight: bold; }
+        .btn-regar { background-color: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Algo está creciendo aquí... 🌱</h1>
+    <p>Haz clic en la semilla para regarla</p>
+
+    <div id="garden">
+        <div id="seed" onclick="germinar()">🌱</div>
+        <div id="flower" class="flower">🌸🌻🌷</div>
+    </div>
+
+    <div id="message">
+        <h2>Para la persona que hace florecer mis días:</h2>
+        <p>Aquí puedes escribir tu mensaje personalizado, Xavier. <br> 
+        "Al igual que un cultivo bien cuidado, lo nuestro crece con fuerza cada día."</p>
+        <p>❤️</p>
+    </div>
+
+    <script>
+        function germinar() {
+            const seed = document.getElementById('seed');
+            const flower = document.getElementById('flower');
+            const message = document.getElementById('message');
+
+            seed.style.display = 'none';
+            flower.style.display = 'block';
+            
+            // Animación simple de crecimiento
+            setTimeout(() => {
+                flower.style.transform = 'scale(2)';
+                message.style.display = 'block';
+            }, 500);
+        }
+    </script>
+</body>
+</html>

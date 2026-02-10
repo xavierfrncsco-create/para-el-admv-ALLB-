@@ -22,51 +22,35 @@
             max-width: 400px; width: 85%; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);
         }
 
-        #phrase { font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px; min-height: 80px; transition: opacity 0.5s; }
-
-        .counter { font-size: 0.9rem; margin-bottom: 20px; color: #8d6e63; font-weight: bold; }
+        #phrase { font-size: 1.3rem; line-height: 1.6; margin-bottom: 30px; min-height: 100px; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s; }
 
         .btn-next {
             background-color: #d4a373; color: white; border: none; padding: 12px 30px;
-            border-radius: 25px; cursor: pointer; transition: all 0.3s;
+            border-radius: 25px; cursor: pointer; transition: all 0.3s; font-size: 1rem;
         }
 
-        .music-container { margin-top: 20px; display: none; }
+        .btn-next:hover { background-color: #bc8a5f; transform: scale(1.05); }
 
-        .heart-icon { color: #e5989b; font-size: 1.5rem; }
+        .heart-icon { color: #e5989b; font-size: 1.5rem; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="heart-icon">❤</div>
-        
-        <div class="counter" id="timer">Contando nuestros días...</div>
-
-        <div id="phrase">Cargando mensaje...</div>
-        
+        <div id="phrase">Cargando...</div>
         <button class="btn-next" onclick="nextPhrase()" id="btn">Empezar</button>
-
-        <div class="music-container" id="music">
-            <p style="font-size: 0.8rem;">Nuestra canción:</p>
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3YvN6IAt1P9X7699F2HkOn?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
     </div>
 
     <script>
-        // Fecha configurada: 31 de Agosto de 2025
+        // Fecha de inicio: 31 de Agosto de 2025
         const startDate = new Date(2025, 7, 31); 
-
-        function updateTimer() {
-            const now = new Date();
-            const diff = now - startDate;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('timer').innerText = `Han pasado ${days} días desde que empezamos a hablar`;
-        }
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        const now = new Date();
+        const diff = now - startDate;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
         const phrases = [
+            `Han pasado ${days} días desde que empezamos a hablar y cada uno ha sido especial.`,
             "Amy Linette Limones Bouviere.",
             "Me haces el ser humano más feliz del mundo.",
             "Te quiero agradecer por un par de cositas:",
@@ -79,4 +63,38 @@
             "Gracias por regalarme esas sonrisas que me dan mil años de vida.",
             "Gracias por esos abrazos que me llenan de paz y tranquilidad.",
             "Y así me podría extender por mucho tiempo...",
-            "Pero gracias por cruzarte en mi vida y por permitirme
+            "Pero gracias por cruzarte en mi vida y por permitirme entrar en la tuya.",
+            "Nunca olvides que te quiero Mimy.",
+            "Att: Xavier."
+        ];
+
+        let currentIndex = 0;
+
+        function updatePhrase() {
+            const p = document.getElementById('phrase');
+            const btn = document.getElementById('btn');
+            p.style.opacity = 0;
+            setTimeout(() => {
+                p.innerText = phrases[currentIndex];
+                p.style.opacity = 1;
+                
+                if (currentIndex === phrases.length - 1) {
+                    btn.innerText = "Te amo ❤️";
+                    btn.style.background = "#e5989b";
+                } else {
+                    btn.innerText = "Siguiente";
+                }
+            }, 500);
+        }
+
+        function nextPhrase() {
+            if (currentIndex < phrases.length - 1) {
+                currentIndex++;
+                updatePhrase();
+            }
+        }
+
+        updatePhrase();
+    </script>
+</body>
+</html>

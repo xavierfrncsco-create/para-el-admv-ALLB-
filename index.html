@@ -3,48 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi novia ❤️</title>
+    <title>Para Mimy ❤️</title>
     <style>
-        body { background-color: #fdf5e6; text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
-        #garden { height: 300px; margin-top: 50px; position: relative; }
-        .flower { font-size: 50px; display: none; transition: transform 0.5s; }
-        #seed { font-size: 40px; cursor: pointer; display: inline-block; }
-        #message { display: none; margin-top: 20px; padding: 20px; color: #5d4037; font-weight: bold; }
-        .btn-regar { background-color: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+        /* Estilo Elegante */
+        body {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Apple Chancery', cursive, 'Georgia', serif;
+            color: #5d4037;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 80%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+
+        #phrase {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            transition: opacity 0.5s ease;
+        }
+
+        .btn-next {
+            background-color: #d4a373;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+        }
+
+        .btn-next:hover {
+            background-color: #bc8a5f;
+            transform: translateY(-2px);
+        }
+
+        .heart {
+            color: #e5989b;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Algo está creciendo aquí... 🌱</h1>
-    <p>Haz clic en la semilla para regarla</p>
-
-    <div id="garden">
-        <div id="seed" onclick="germinar()">🌱</div>
-        <div id="flower" class="flower">🌸🌻🌷</div>
-    </div>
-
-    <div id="message">
-        <h2>Para la persona que hace florecer mis días:</h2>
-        <p>Aquí puedes escribir tu mensaje personalizado, Xavier. <br> 
-        "Al igual que un cultivo bien cuidado, lo nuestro crece con fuerza cada día."</p>
-        <p>❤️</p>
+    <div class="container">
+        <div class="heart">❤</div>
+        <div id="phrase">Cargando mensaje...</div>
+        <button class="btn-next" onclick="nextPhrase()" id="btn">Siguiente</button>
     </div>
 
     <script>
-        function germinar() {
-            const seed = document.getElementById('seed');
-            const flower = document.getElementById('flower');
-            const message = document.getElementById('message');
+        const phrases = [
+            "Amy Linette Limones Bouviere.",
+            "Me haces el ser humano más feliz del mundo.",
+            "Te quiero agradecer por un par de cositas:",
+            "Gracias por hacer que el momento más simple se convierta en un momento especial.",
+            "Gracias por ser mi compañera, mejor amiga, novia, confidente, etc...",
+            "Gracias por la forma en la que me demuestras tu amor.",
+            "Gracias por incluirme en tus planes Familiares.",
+            "Gracias por tenerme paciencia ;).",
+            "Gracias por complementarme.",
+            "Gracias por regalarme esas sonrisas que me dan mil años de vida.",
+            "Gracias por esos abrazos que me llenan de paz y tranquilidad.",
+            "Y así me podría extender por mucho tiempo...",
+            "Pero gracias por cruzarte en mi vida y por permitirme entrar en la tuya.",
+            "Nunca olvides que te quiero Mimy.",
+            "Att: Xavier."
+        ];
 
-            seed.style.display = 'none';
-            flower.style.display = 'block';
-            
-            // Animación simple de crecimiento
+        let currentIndex = 0;
+        const phraseElement = document.getElementById('phrase');
+        const btnElement = document.getElementById('btn');
+
+        function updatePhrase() {
+            phraseElement.style.opacity = 0;
             setTimeout(() => {
-                flower.style.transform = 'scale(2)';
-                message.style.display = 'block';
+                phraseElement.innerText = phrases[currentIndex];
+                phraseElement.style.opacity = 1;
+                
+                // Cambiar texto del botón en la última frase
+                if (currentIndex === phrases.length - 1) {
+                    btnElement.innerText = "Te amo ❤️";
+                    btnElement.onclick = null; // Desactiva el clic al final
+                }
             }, 500);
         }
+
+        function nextPhrase() {
+            if (currentIndex < phrases.length - 1) {
+                currentIndex++;
+                updatePhrase();
+            }
+        }
+
+        // Iniciar con la primera frase
+        updatePhrase();
     </script>
 </body>
 </html>

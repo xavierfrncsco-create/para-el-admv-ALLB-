@@ -6,85 +6,65 @@
     <title>Para Mimy ❤️</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Georgia', serif;
-            color: #4a332d;
-            overflow: hidden;
-            position: relative;
+            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;
+            height: 100vh; font-family: 'Georgia', serif; color: #4a332d; overflow: hidden; position: relative;
         }
 
-        /* Imagen de fondo con efecto elegante */
         body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('foto.jpg'); /* Asegúrate de que el nombre coincida */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4; /* Esto hace que la foto se vea clarita y elegante */
-            z-index: -1;
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('foto.jpg'); background-size: cover; background-position: center;
+            opacity: 0.4; z-index: -1;
         }
 
         .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.85); /* Fondo blanco semi-transparente */
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 85%;
-            backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
-            border: 1px solid rgba(255,255,255,0.3);
+            text-align: center; background: rgba(255, 255, 255, 0.85); padding: 30px;
+            border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 400px; width: 85%; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);
         }
 
-        #phrase {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
+        #phrase { font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px; min-height: 80px; transition: opacity 0.5s; }
+
+        .counter { font-size: 0.9rem; margin-bottom: 20px; color: #8d6e63; font-weight: bold; }
 
         .btn-next {
-            background-color: #d4a373;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background-color: #d4a373; color: white; border: none; padding: 12px 30px;
+            border-radius: 25px; cursor: pointer; transition: all 0.3s;
         }
 
-        .btn-next:hover {
-            background-color: #bc8a5f;
-            transform: scale(1.05);
-        }
+        .music-container { margin-top: 20px; display: none; }
 
-        .heart {
-            color: #e5989b;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
+        .heart-icon { color: #e5989b; font-size: 1.5rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="heart">❤</div>
-        <div id="phrase">Cargando...</div>
+        <div class="heart-icon">❤</div>
+        
+        <div class="counter" id="timer">Contando nuestros días...</div>
+
+        <div id="phrase">Cargando mensaje...</div>
+        
         <button class="btn-next" onclick="nextPhrase()" id="btn">Empezar</button>
+
+        <div class="music-container" id="music">
+            <p style="font-size: 0.8rem;">Nuestra canción:</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/10QxXvYpLzYlOqC8fVdE3X?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
     </div>
 
     <script>
+        const startDate = new Date(2025, 7, 31); 
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('timer').innerText = `Han pasado ${days} días desde que empezamos a hablar`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
         const phrases = [
             "Amy Linette Limones Bouviere.",
             "Me haces el ser humano más feliz del mundo.",
@@ -104,20 +84,18 @@
         ];
 
         let currentIndex = 0;
-        const phraseElement = document.getElementById('phrase');
-        const btnElement = document.getElementById('btn');
-
         function updatePhrase() {
-            phraseElement.style.opacity = 0;
+            const p = document.getElementById('phrase');
+            const btn = document.getElementById('btn');
+            p.style.opacity = 0;
             setTimeout(() => {
-                phraseElement.innerText = phrases[currentIndex];
-                phraseElement.style.opacity = 1;
-                
+                p.innerText = phrases[currentIndex];
+                p.style.opacity = 1;
                 if (currentIndex === phrases.length - 1) {
-                    btnElement.innerText = "Te amo ❤️";
-                    btnElement.style.background = "#e5989b";
+                    btn.style.display = 'none';
+                    document.getElementById('music').style.display = 'block';
                 } else {
-                    btnElement.innerText = "Siguiente";
+                    btn.innerText = "Siguiente";
                 }
             }, 500);
         }
@@ -128,9 +106,7 @@
                 updatePhrase();
             }
         }
-
         updatePhrase();
     </script>
 </body>
 </html>
-
